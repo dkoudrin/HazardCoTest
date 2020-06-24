@@ -6,11 +6,11 @@ import org.json.simple.parser.ParseException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
 
 /**
  * @author Dmitri Koudrin
  * The following has been split into three test cases as per the instruction sheet.
- * Although the first test does not actually contain an assertion as most tests should.
  * I have used Intellij with Maven to run the tests as junit.
  * The pom file contains all the required dependencies that I needed to get this running.
  */
@@ -23,7 +23,7 @@ public class trademeAPITests {
     public static void initialSetup() throws ParseException {
 
         // The base URI to be used
-        RestAssured.baseURI = "https://api.trademe.co.nz/v1/";
+        RestAssured.baseURI = "https://api.tmsandbox.co.nz/v1/";
 
         // Get the UsedCars endpoint in json format and extract it as a JSONObject
         String jsonResponse = RestAssured.get("Categories/UsedCars.json?with_counts=true")
@@ -41,6 +41,8 @@ public class trademeAPITests {
       available in the TradeMe Used Cars category.
      */
     public void getAllNamedCarBrands() {
+        assertThat("The number of Used car brands returned should be positive.",
+                usedCarBrands.isEmpty(), is(false));
         System.out.print("The number of named brands of used cars is "
                 + usedCarBrands.size());
     }
