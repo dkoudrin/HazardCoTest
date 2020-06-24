@@ -5,7 +5,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 /**
@@ -22,6 +21,7 @@ public class trademeAPITests {
 
     @BeforeClass
     public static void initialSetup() throws ParseException {
+
         // The base URI to be used
         RestAssured.baseURI = "https://api.trademe.co.nz/v1/";
 
@@ -51,8 +51,10 @@ public class trademeAPITests {
       Print out the current number of Kia cars listed.
      */
     public void doesKiaBrandExist() {
+
         boolean doesKiaExist=false;
         int kiaCount = 0;
+
         // Go through the Subcategories Jsonarray and check that it contains "Kia" brand.
         for (Object usedCarBrand : usedCarBrands) {
             JSONObject carCategory = (JSONObject) usedCarBrand;
@@ -75,6 +77,7 @@ public class trademeAPITests {
     public void doesHispanoSuizaBrandExist() {
 
         boolean doesHispanoSuizaExist=false;
+
         // Go through the Subcategories Jsonarray and check that it contains "Kia" brand.
         for (Object usedCarBrand : usedCarBrands) {
             JSONObject carCategory = (JSONObject) usedCarBrand;
